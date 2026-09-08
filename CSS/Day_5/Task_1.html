@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 - Flex Direction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            /* Change this to column, row-reverse, column-reverse */
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 15px;
+            width: 90%;
+            height: 300px;
+            margin: auto;
+            border: 2px solid black;
+            background: #f2f2f2;
+        }
+
+        .box {
+            width: 120px;
+            height: 80px;
+            background: lightgreen;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Flex Direction</h1>
+
+    <div class="container">
+        <div class="box">HTML</div>
+        <div class="box">CSS</div>
+        <div class="box">JavaScript</div>
+        <div class="box">React</div>
+        <div class="box">Node.js</div>
+    </div>
+
+</body>
+
+</html>

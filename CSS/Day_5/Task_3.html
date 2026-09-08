@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - Flex Wrap</title>
+
+
+    <style>
+        .container {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+            width: 600px;
+            padding: 20px;
+
+            background-color: #f2f2f2;
+            border: 3px solid black;
+        }
+
+        .course {
+            width: 150px;
+            height: 100px;
+
+            background-color: lightcoral;
+            border: 2px solid black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <h1>Courses</h1>
+
+    <div class="container">
+        <div class="course">HTML</div>
+        <div class="course">CSS</div>
+        <div class="course">JavaScript</div>
+        <div class="course">React</div>
+        <div class="course">Node.js</div>
+        <div class="course">MongoDB</div>
+    </div>
+
+
+</body>
+
+</html>
