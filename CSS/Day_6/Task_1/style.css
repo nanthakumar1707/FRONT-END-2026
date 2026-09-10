@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.parent {
+    width: 500px;
+    height: 300px;
+    background-color: lightgray;
+
+    position: relative;
+
+    margin: 50px auto;
+    border: 3px solid black;
+}
+
+.box {
+    width: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.box1 {
+    background-color: red;
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+}
+
+.box2 {
+    background-color: blue;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+}
+
+.box3 {
+    background-color: green;
+
+    position: absolute;
+
+    bottom: 0;
+    left:0
