@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Product Card Grid</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+
+        .product-card {
+            background-color: rgb(146, 142, 108);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h2 {
+            margin: 15px 0 8px;
+        }
+
+
+
+        .price {
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .product-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        .product-card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Our Products</h1>
+
+    <section class="product-grid">
+
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" alt="Laptop">
+
+            <h2>Laptop</h2>
+
+            <div class="price">₹55,000</div>
+
+            <p>
+                Powerful laptop suitable for students,
+                professionals and everyday work.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+
+
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Smartphone">
+
+            <h2>Smartphone</h2>
+
+            <div class="price">₹25,000</div>
+
+            <p>
+                Modern smartphone with excellent
+                performance and camera quality.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+
+
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" alt="Headphones">
+
+            <h2>Headphones</h2>
+
+            <div class="price">₹3,500</div>
+
+            <p>
+                Wireless headphones with clear sound
+                and comfortable design.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+
+
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Smart Watch">
+
+            <h2>Smart Watch</h2>
+
+            <div class="price">₹4,999</div>
+
+            <p>
+                Smart watch for tracking fitness,
+                health and daily activities.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32" alt="Camera">
+
+            <h2>Camera</h2>
+
+            <div class="price">₹45,000</div>
+
+            <p>
+                High-quality camera for capturing
+                beautiful photos and videos.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3" alt="Keyboard">
+
+            <h2>Keyboard</h2>
+
+            <div class="price">₹1,500</div>
+
+            <p>
+                Comfortable keyboard suitable for
+                work, coding and gaming.
+            </p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
