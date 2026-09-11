@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Hover</title>
+
+    <style>
+        .profile-card {
+            width: 300px;
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #e1f783;
+        }
+
+        .profile-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .profile-card img:hover {
+            transform: scale(1.1);
+            border: 5px solid blue;
+            opacity: 0.7;
+        }
+
+        .profile-card h2 {
+            margin-bottom: 5px;
+        }
+
+        .profile-card p {
+            color: rgb(75, 180, 250);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="profile-card">
+
+        <img src="https://i.pravatar.cc/300" alt="Profile Image">
+
+        <h2> Nila </h2>
+
+        <p>Frontend Developer</p>
+
+    </div>
+
+</body>
+
+</html>
