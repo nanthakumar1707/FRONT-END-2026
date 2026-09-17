@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PDFLove - PDF Tools</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f7f7fb;
+            color: #111;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            height: 64px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 34px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            color: #e5322d;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #222;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 700;
+            margin-left: 22px;
+        }
+
+        nav a:hover {
+            color: #e5322d;
+        }
+
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .login {
+            color: #222;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .signup {
+            background: #e5322d;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .menu {
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* ================= PAGE ================= */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 68px 20px 28px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        .hero p {
+            max-width: 790px;
+            margin: auto;
+            color: #555;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        /* ================= TABS ================= */
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 28px auto 30px;
+            padding: 0 20px;
+        }
+
+        .tabs button {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 18px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .tabs button:hover,
+        .tabs button.active {
+            background: #e5322d;
+            color: #fff;
+            border-color: #e5322d;
+        }
+
+        /* ================= TOOLS ================= */
+
+        .tools {
+            width: 92%;
+            max-width: 1210px;
+            margin: 0 auto 65px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .tool-card {
+            background: #fff;
+            min-height: 220px;
+            padding: 30px 28px;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        .tool-card:hover {
+            border-color: #000;
+            transform: translateY(-5px);
+        }
+
+        .tool-card.selected {
+            border-color: #000;
+            background: #f1f1f1;
+        }
+
+        .tool-card img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            margin-bottom: 24px;
+        }
+
+        .tool-card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .tool-card p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .new {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #ffefba;
+            color: #856100;
+            padding: 5px 9px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* ================= FEATURE SECTION ================= */
+
+        .feature-row {
+            background: #fff;
+            padding: 60px 8%;
+        }
+
+        .feature-row h2 {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 35px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .feature-box {
+            background: #f7f7fb;
+            border-radius: 8px;
+            padding: 28px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.25s;
+        }
+
+        .feature-box:hover,
+        .feature-box.selected {
+            border-color: #000;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* ================= IMAGE SECTION ================= */
+
+        .img-section {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+            padding: 65px 8%;
+            background: #f2f3f8;
+        }
+
+        .img-section div {
+            flex: 1;
+        }
+
+        .img-section h2 {
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+
+        .img-section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .img-section img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .red-btn {
+            background: #e5322d;
+            color: #fff;
+            border: none;
+            padding: 15px 26px;
+            border-radius: 6px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 8px;
+        }
+
+        .red-btn:hover {
+            background: #c92722;
+        }
+
+        .black-btn {
+            background: #111;
+        }
+
+        /* ================= TOOL PAGE ================= */
+
+        .tool-page {
+            min-height: 72vh;
+            text-align: center;
+            padding: 70px 8%;
+        }
+
+        .tool-page img {
+            width: 88px;
+            margin-bottom: 24px;
+        }
+
+        .tool-page h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+
+        .tool-page p {
+            max-width: 680px;
+            margin: 0 auto 28px;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .upload-box {
+            background: #fff;
+            max-width: 620px;
+            margin: 30px auto;
+            padding: 48px;
+            border-radius: 10px;
+            border: 3px dashed #cfcfcf;
+        }
+
+        .upload-box:hover {
+            border-color: #000;
+            background: #f4f4f4;
+        }
+
+        .process-box {
+            background: #fff;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.08);
+            border: 3px solid #000;
+        }
+
+        /* =====================================================
+       FOOTER
+       ===================================================== */
+
+        footer {
+            background: #27272e;
+            padding: 70px 9% 25px;
+            color: #fff;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+
+        footer h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            display: block;
+            text-decoration: none;
+            color: #e5e5e5;
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* ================= BOTTOM FOOTER ================= */
+
+        .bottom-footer {
+            border-top: 1px solid #555;
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .tools {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-grid,
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .img-section {
+                flex-direction: column;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 18px;
+            }
+
+            .hero h1,
+            .tool-page h1 {
+                font-size: 31px;
+            }
+
+            .tools,
+            .feature-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .login,
+            .signup {
+                display: none;
+            }
+
+            .bottom-footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo" onclick="showPage('home')">
+            iLove<span>PDF</span>
+        </div>
+
+        <nav>
+            <a href="#" onclick="openTool('Merge PDF')">Merge PDF</a>
+            <a href="#" onclick="openTool('Split PDF')">Split PDF</a>
+            <a href="#" onclick="openTool('Compress PDF')">Compress PDF</a>
+            <a href="#" onclick="openTool('PDF to Word')">Convert PDF</a>
+            <a href="#" onclick="showPage('home')">All PDF tools</a>
+        </nav>
+
+        <div class="right-nav">
+
+            <a href="#" class="login" onclick="showPage('loginPage')">
+                Login
+            </a>
+
+            <a href="#" class="signup" onclick="showPage('loginPage')">
+                Sign up
+            </a>
+
+            <div class="menu">
+                ☰
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- HOME PAGE -->
+
+        <section id="home" class="page active">
+
+            <div class="hero">
+
+                <h1>
+                    Every tool you need to work with PDFs in one place
+                </h1>
+
+                <p>
+                    Every tool you need to use PDFs, at your fingertips.
+                    Merge, split, compress, convert, rotate, unlock and
+                    watermark PDFs with just a few clicks.
+                </p>
+
+            </div>
+
+
+            <!-- TABS -->
+
+            <div class="tabs">
+
+                <button class="active" onclick="filterTools('all', this)">
+                    All
+                </button>
+
+                <button onclick="filterTools('organize', this)">
+                    Organize PDF
+                </button>
+
+                <button onclick="filterTools('optimize', this)">
+                    Optimize PDF
+                </button>
+
+                <button onclick="filterTools('convert', this)">
+                    Convert PDF
+                </button>
+
+                <button onclick="filterTools('edit', this)">
+                    Edit PDF
+                </button>
+
+                <button onclick="filterTools('security', this)">
+                    PDF Security
+                </button>
+
+                <button onclick="filterTools('ai', this)">
+                    PDF Intelligence
+                </button>
+
+            </div>
+
+
+            <!-- TOOLS -->
+
+            <section class="tools" id="toolsBox"></section>
+
+
+            <!-- FEATURE SECTION -->
+
+            <section class="feature-row">
+
+                <h2>
+                    Work your way
+                </h2>
+
+                <div class="feature-grid">
+
+                    <div class="feature-box" onclick="selectBox(this); showPage('desktopPage')">
+
+                        <h3>
+                            Work offline with Desktop
+                        </h3>
+
+                        <p>
+                            Batch edit and manage documents locally,
+                            with no internet and no limits.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box" onclick="selectBox(this); showPage('mobilePage')">
+
+                        <h3>
+                            On-the-go with Mobile
+                        </h3>
+
+                        <p>
+                            Your favorite tools, right in your pocket.
+                            Keep working anytime, anywhere.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-box" onclick="selectBox(this); showPage('businessPage')">
+
+                        <h3>
+                            Built for business
+                        </h3>
+
+                        <p>
+                            Automate document management, onboard teams
+                            easily, and scale your work.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- IMAGE SECTION -->
+
+            <section class="img-section">
+
+                <div>
+
+                    <h2>
+                        Image editing made simple
+                    </h2>
+
+                    <p>
+                        Experience speed, simplicity and clean editing
+                        for image and PDF tasks. Compress, resize and
+                        manage files in one friendly workspace.
+                    </p>
+
+                    <button class="red-btn" onclick="showPage('imagePage')">
+
+                        Go to Image Tools
+
+                    </button>
+
+                </div>
+
+
+                <div>
+
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80"
+                        alt="Documents">
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ================= TOOL PAGE ================= -->
+
+        <section id="toolPage" class="page">
+
+            <div class="tool-page">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF">
+
+                <h1 id="toolTitle">
+                    Merge PDF
+                </h1>
+
+                <p id="toolDesc">
+                    Choose your file and continue to the next page.
+                </p>
+
+
+                <div class="upload-box" onclick="showPage('nextPage')">
+
+                    <h2>
+                        Select PDF file
+                    </h2>
+
+                    <p>
+                        Drop files here or click this box to continue.
+                    </p>
+
+                    <button class="red-btn">
+                        Choose file
+                    </button>
+
+                </div>
+
+
+                <button class="red-btn black-btn" onclick="showPage('home')">
+
+                    Back
+
+                </button>
+
+
+                <button class="red-btn" onclick="showPage('nextPage')">
+
+                    Next Page
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEXT PAGE ================= -->
+
+        <section id="nextPage" class="page">
+
+            <div class="tool-page">
+
+                <div class="process-box">
+
+                    <h1>
+                        Next Page
+                    </h1>
+
+                    <p>
+                        Your selected tool page is ready.
+                        This is where upload, edit, processing
+                        or download options can be shown.
+                    </p>
+
+                    <button class="red-btn black-btn" onclick="showPage('toolPage')">
+
+                        Previous
+
+                    </button>
+
+                    <button class="red-btn" onclick="showPage('donePage')">
+
+                        Continue
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DONE PAGE ================= -->
+
+        <section id="donePage" class="page">
+
+            <div class="tool-page">
+
+                <div class="process-box">
+
+                    <h1>
+                        Task Completed
+                    </h1>
+
+                    <p>
+                        This is the final page.
+                        You can place download buttons
+                        or results here.
+                    </p>
+
+                    <button class="red-btn" onclick="showPage('home')">
+
+                        Go Home
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LOGIN PAGE ================= -->
+
+        <section id="loginPage" class="page">
+
+            <div class="tool-page">
+
+                <div class="process-box">
+
+                    <h1>
+                        Login / Sign up
+                    </h1>
+
+                    <p>
+                        This is a sample login page for your project.
+                    </p>
+
+                    <button class="red-btn" onclick="showPage('home')">
+
+                        Back Home
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DESKTOP PAGE ================= -->
+
+        <section id="desktopPage" class="page">
+
+            <div class="tool-page">
+
+                <h1>
+                    Desktop App
+                </h1>
+
+                <p>
+                    Work offline and manage PDF files from your computer.
+                </p>
+
+                <button class="red-btn" onclick="showPage('home')">
+
+                    Back Home
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MOBILE PAGE ================= -->
+
+        <section id="mobilePage" class="page">
+
+            <div class="tool-page">
+
+                <h1>
+                    Mobile App
+                </h1>
+
+                <p>
+                    Use PDF tools from mobile and continue your work anywhere.
+                </p>
+
+                <button class="red-btn" onclick="showPage('home')">
+
+                    Back Home
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BUSINESS PAGE ================= -->
+
+        <section id="businessPage" class="page">
+
+            <div class="tool-page">
+
+                <h1>
+                    Business Tools
+                </h1>
+
+                <p>
+                    Manage documents for teams, offices, students
+                    and daily work.
+                </p>
+
+                <button class="red-btn" onclick="showPage('home')">
+
+                    Back Home
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= IMAGE PAGE ================= -->
+
+        <section id="imagePage" class="page">
+
+            <div class="tool-page">
+
+                <h1>
+                    Image Tools
+                </h1>
+
+                <p>
+                    Compress, resize and convert images
+                    with a simple interface.
+                </p>
+
+                <button class="red-btn" onclick="showPage('home')">
+
+                    Back Home
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+
+            <!-- PRODUCT -->
+
+            <div>
+
+                <h4>
+                    Product
+                </h4>
+
+                <a href="#">
+                    Home
+                </a>
+
+                <a href="#">
+                    Features
+                </a>
+
+                <a href="#">
+                    Pricing
+                </a>
+
+                <a href="#">
+                    Tools
+                </a>
+
+                <a href="#">
+                    FAQ
+                </a>
+
+            </div>
+
+
+            <!-- RESOURCES -->
+
+            <div>
+
+                <h4>
+                    Resources
+                </h4>
+
+                <a href="#">
+                    Desktop
+                </a>
+
+                <a href="#">
+                    Mobile
+                </a>
+
+                <a href="#">
+                    API
+                </a>
+
+                <a href="#">
+                    Image tools
+                </a>
+
+            </div>
+
+
+            <!-- SOLUTIONS -->
+
+            <div>
+
+                <h4>
+                    Solutions
+                </h4>
+
+                <a href="#">
+                    Business
+                </a>
+
+                <a href="#">
+                    Education
+                </a>
+
+                <a href="#">
+                    Students
+                </a>
+
+                <a href="#">
+                    Office
+                </a>
+
+            </div>
+
+
+            <!-- LEGAL -->
+
+            <div>
+
+                <h4>
+                    Legal
+                </h4>
+
+                <a href="#">
+                    Security
+                </a>
+
+                <a href="#">
+                    Privacy policy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+                <a href="#">
+                    Cookies
+                </a>
+
+            </div>
+
+
+            <!-- COMPANY -->
+
+            <div>
+
+                <h4>
+                    Company
+                </h4>
+
+                <a href="#">
+                    About us
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Blog
+                </a>
+
+                <a href="#">
+                    Press
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BOTTOM FOOTER ================= -->
+
+        <div class="bottom-footer">
+
+            <p>
+                English
+            </p>
+
+            <p>
+                © iLovePDF style project 2026 - PDF Editor
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const tools = [
+
+            [
+                "Merge PDF",
+                "Combine PDFs in the order you want with the easiest PDF merger available.",
+                "organize"
+            ],
+
+            [
+                "Split PDF",
+                "Separate one page or a whole set into independent PDF files.",
+                "organize"
+            ],
+
+            [
+                "Compress PDF",
+                "Reduce file size while optimizing for maximal PDF quality.",
+                "optimize"
+            ],
+
+            [
+                "PDF to Word",
+                "Convert your PDF files into easy to edit DOC and DOCX documents.",
+                "convert"
+            ],
+
+            [
+                "PDF to PowerPoint",
+                "Turn your PDF files into easy to edit PPT and PPTX slideshows.",
+                "convert"
+            ],
+
+            [
+                "PDF to Excel",
+                "Pull data straight from PDFs into Excel spreadsheets in seconds.",
+                "convert"
+            ],
+
+            [
+                "Word to PDF",
+                "Make DOC and DOCX files easy to read by converting them to PDF.",
+                "convert"
+            ],
+
+            [
+                "PowerPoint to PDF",
+                "Make PPT and PPTX slideshows easy to view by converting them to PDF.",
+                "convert"
+            ],
+
+            [
+                "Excel to PDF",
+                "Make Excel spreadsheets easy to read by converting them to PDF.",
+                "convert"
+            ],
+
+            [
+                "Edit PDF",
+                "Add text, images, shapes or freehand annotations to a PDF document.",
+                "edit"
+            ],
+
+            [
+                "PDF to JPG",
+                "Convert each PDF page into a JPG or extract images from PDF.",
+                "convert"
+            ],
+
+            [
+                "JPG to PDF",
+                "Convert JPG images to PDF in seconds with simple options.",
+                "convert"
+            ],
+
+            [
+                "Sign PDF",
+                "Sign yourself or request electronic signatures from others.",
+                "security"
+            ],
+
+            [
+                "Watermark",
+                "Stamp an image or text over your PDF in seconds.",
+                "edit"
+            ],
+
+            [
+                "Rotate PDF",
+                "Rotate your PDFs the way you need them.",
+                "edit"
+            ],
+
+            [
+                "HTML to PDF",
+                "Convert webpages in HTML to PDF with a click.",
+                "convert"
+            ],
+
+            [
+                "Unlock PDF",
+                "Remove PDF password security from your files.",
+                "security"
+            ],
+
+            [
+                "Protect PDF",
+                "Protect PDF files with a password.",
+                "security"
+            ],
+
+            [
+                "Organize PDF",
+                "Sort, delete or add PDF pages to your document.",
+                "organize"
+            ],
+
+            [
+                "Repair PDF",
+                "Repair damaged PDFs and recover data from corrupt files.",
+                "optimize"
+            ],
+
+            [
+                "OCR PDF",
+                "Convert scanned PDFs into searchable documents.",
+                "optimize"
+            ],
+
+            [
+                "Compare PDF",
+                "Compare two files and spot document changes.",
+                "security"
+            ],
+
+            [
+                "PDF Forms",
+                "Create and fill interactive PDF forms.",
+                "edit"
+            ],
+
+            [
+                "AI Summarizer",
+                "Generate quick summaries from long documents.",
+                "ai"
+            ],
+
+            [
+                "Translate PDF",
+                "Translate PDF files while keeping the layout clean.",
+                "ai"
+            ],
+
+            [
+                "PDF to Markdown",
+                "Turn PDFs into Markdown files for notes and docs.",
+                "ai"
+            ]
+
+        ];
+
+
+        const icon =
+            "https://cdn-icons-png.flaticon.com/512/337/337946.png";
+
+
+        const toolsBox =
+            document.getElementById("toolsBox");
+
+
+        /* ================= LOAD TOOLS ================= */
+
+        function loadTools(category) {
+
+            toolsBox.innerHTML = "";
+
+            tools.forEach(function (tool) {
+
+                const name = tool[0];
+                const desc = tool[1];
+                const type = tool[2];
+
+
+                if (category !== "all" && category !== type) {
+                    return;
+                }
+
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "tool-card";
+
+
+                const newText =
+                    type === "ai" || name === "PDF Forms"
+                        ? '<span class="new">NEW</span>'
+                        : "";
+
+
+                card.innerHTML = `
+
+          ${newText}
+
+          <img
+            src="${icon}"
+            alt="PDF icon"
+          >
+
+          <h3>
+            ${name}
+          </h3>
+
+          <p>
+            ${desc}
+          </p>
+
+        `;
+
+
+                card.onclick = function () {
+
+                    document
+                        .querySelectorAll(".tool-card")
+                        .forEach(function (item) {
+
+                            item.classList.remove("selected");
+
+                        });
+
+
+                    card.classList.add("selected");
+
+
+                    setTimeout(function () {
+
+                        openTool(name, desc);
+
+                    }, 250);
+
+                };
+
+
+                toolsBox.appendChild(card);
+
+            });
+
+        }
+
+
+        /* ================= FILTER TOOLS ================= */
+
+        function filterTools(category, button) {
+
+            document
+                .querySelectorAll(".tabs button")
+                .forEach(function (btn) {
+
+                    btn.classList.remove("active");
+
+                });
+
+
+            button.classList.add("active");
+
+            loadTools(category);
+
+        }
+
+
+        /* ================= SHOW PAGE ================= */
+
+        function showPage(pageId) {
+
+            document
+                .querySelectorAll(".page")
+                .forEach(function (page) {
+
+                    page.classList.remove("active");
+
+                });
+
+
+            document
+                .getElementById(pageId)
+                .classList.add("active");
+
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        /* ================= OPEN TOOL ================= */
+
+        function openTool(name, desc) {
+
+            document
+                .getElementById("toolTitle")
+                .innerText = name;
+
+
+            document
+                .getElementById("toolDesc")
+                .innerText =
+                desc ||
+                "Choose your file and continue to the next page.";
+
+
+            showPage("toolPage");
+
+        }
+
+
+        /* ================= SELECT BOX ================= */
+
+        function selectBox(box) {
+
+            document
+                .querySelectorAll(".feature-box")
+                .forEach(function (item) {
+
+                    item.classList.remove("selected");
+
+                });
+
+
+            box.classList.add("selected");
+
+        }
+
+
+        /* ================= INITIAL LOAD ================= */
+
+        loadTools("all");
+
+    </script>
+
+</body>
+
+</html>
