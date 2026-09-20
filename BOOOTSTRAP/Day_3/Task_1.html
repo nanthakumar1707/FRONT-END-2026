@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travel Website - Tailwind CSS</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <section class="bg-blue-600 text-white">
+
+        <!-- Navbar -->
+        <nav class="flex justify-between items-center px-10 py-5">
+            <h1 class="text-2xl font-bold">TravelGo</h1>
+
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-yellow-300">Home</a>
+                <a href="#" class="hover:text-yellow-300">Destinations</a>
+                <a href="#" class="hover:text-yellow-300">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <div class="text-center py-24 px-5">
+            <h2 class="text-5xl font-bold mb-5">
+                Explore The World
+            </h2>
+
+            <p class="text-lg mb-8">
+                Discover beautiful places and create unforgettable memories.
+            </p>
+
+            <button class="bg-yellow-400 text-black px-8 py-3 rounded-lg
+                           font-semibold hover:bg-yellow-300">
+                Explore Now
+            </button>
+        </div>
+
+    </section>
+
+    <section class="py-16 px-10">
+
+        <h2 class="text-3xl font-bold text-center mb-10">
+            Popular Destinations
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden
+                        hover:scale-105 transition">
+
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" class="w-full h-52 object-cover"
+                    alt="Paris">
+
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-2">Paris</h3>
+
+                    <p class="text-gray-600">
+                        Experience the beauty of the Eiffel Tower
+                        and the streets of Paris.
+                    </p>
+
+                    <button class="mt-4 bg-blue-600 text-white
+                                   px-5 py-2 rounded-lg">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden
+                        hover:scale-105 transition">
+
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4" class="w-full h-52 object-cover"
+                    alt="Bali">
+
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-2">Bali</h3>
+
+                    <p class="text-gray-600">
+                        Relax on beautiful beaches and explore
+                        the amazing culture of Bali.
+                    </p>
+
+                    <button class="mt-4 bg-blue-600 text-white
+                                   px-5 py-2 rounded-lg">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden
+                        hover:scale-105 transition">
+
+                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf" class="w-full h-52 object-cover"
+                    alt="Tokyo">
+
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-2">Tokyo</h3>
+
+                    <p class="text-gray-600">
+                        Discover modern technology, food and
+                        traditional Japanese culture.
+                    </p>
+
+                    <button class="mt-4 bg-blue-600 text-white
+                                   px-5 py-2 rounded-lg">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="bg-gray-900 text-white text-center py-8">
+
+        <h2 class="text-2xl font-bold mb-3">
+            TravelGo
+        </h2>
+
+        <p class="text-gray-400 mb-4">
+            Make your next journey unforgettable.
+        </p>
+
+        <p class="text-gray-500">
+            © 2026 TravelGo. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
