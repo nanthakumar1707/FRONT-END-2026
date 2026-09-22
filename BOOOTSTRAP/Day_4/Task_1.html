@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Chennai Mobiles</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        :root {
+            --red: #ed1c24;
+            --blue: #0788cf;
+            --black: #111;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6fb;
+            color: #111;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(255, 255, 255, .82), rgba(255, 255, 255, .93)),
+                url("https://www.thechennaimobiles.com/_next/image?q=75&url=https%3A%2F%2Fapi.thechennaimobiles.com%2F1733127766894.jpeg&w=1600") center/cover no-repeat;
+            filter: blur(8px);
+            transform: scale(1.05);
+            z-index: -1;
+        }
+
+        .top-strip {
+            background: #050505;
+            color: #fff;
+            font-size: 13px;
+            padding: 7px 0;
+        }
+
+        .main-header {
+            background: rgba(255, 255, 255, .97);
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .logo-img {
+            width: 58px;
+            height: 58px;
+            border-radius: 13px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .logo-text strong {
+            display: block;
+            font-size: 25px;
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .08em;
+        }
+
+        .search-box {
+            height: 46px;
+            border: 2px solid #111;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0 16px;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            width: 58px;
+            border: 0;
+            background: var(--red);
+            color: #fff;
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .icon-btn {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            background: #111;
+            color: #fff;
+            display: inline-grid;
+            place-items: center;
+            text-decoration: none;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -5px;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--red);
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .nav-bar {
+            background: #111;
+        }
+
+        .nav-link-custom {
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 18px;
+            font-size: 14px;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .layout {
+            max-width: 1480px;
+            margin: auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: 22px;
+        }
+
+        .sidebar {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .09);
+            height: max-content;
+            position: sticky;
+            top: 145px;
+        }
+
+        .sidebar-title {
+            background: var(--red);
+            color: #fff;
+            padding: 15px 18px;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .cat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 18px;
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .cat-item:hover {
+            color: var(--red);
+            background: #fff6f6;
+        }
+
+        .hero {
+            min-height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(0, 0, 0, .92), rgba(0, 0, 0, .35)),
+                url("https://www.thechennaimobiles.com/_next/image?q=75&url=https%3A%2F%2Fapi.thechennaimobiles.com%2F1733127766894.jpeg&w=1600") center/cover no-repeat;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 44px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, .22);
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 62px);
+            line-height: 1;
+            font-weight: 950;
+            margin-bottom: 16px;
+            max-width: 650px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 560px;
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            background: var(--red);
+            color: #fff;
+            border-radius: 6px;
+            padding: 13px 26px;
+            text-decoration: none;
+            font-weight: 900;
+            margin-top: 10px;
+        }
+
+        .deal-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .deal {
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+            border-left: 5px solid var(--blue);
+        }
+
+        .deal:nth-child(2) {
+            border-left-color: var(--red);
+        }
+
+        .deal:nth-child(3) {
+            border-left-color: #111;
+        }
+
+        .deal-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #f1f5f9;
+            font-size: 22px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, .98);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .08);
+            margin-bottom: 24px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .section-head h2 {
+            font-size: 19px;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .view-all {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .product {
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            background: #fff;
+            padding: 14px;
+            position: relative;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            transition: .2s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, .13);
+        }
+
+        .badge-sale {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 900;
+            padding: 5px 8px;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 165px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            line-height: 1.35;
+            font-weight: 800;
+            min-height: 54px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            margin-top: auto;
+            font-size: 19px;
+            font-weight: 950;
+        }
+
+        .mrp {
+            color: #777;
+            text-decoration: line-through;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+
+        .add-btn {
+            width: 100%;
+            border: 0;
+            background: #111;
+            color: #fff;
+            border-radius: 6px;
+            padding: 9px;
+            margin-top: 11px;
+            font-weight: 900;
+            font-size: 13px;
+        }
+
+        .add-btn:hover {
+            background: var(--red);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .footer {
+            background: #070707;
+            color: #fff;
+            padding: 40px 24px 20px;
+            margin-top: 28px;
+        }
+
+        .footer h4 {
+            font-size: 16px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .footer a {
+            display: block;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 9px;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .layout {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .deal-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-text strong {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-strip">
+        <div class="container-fluid px-4 d-flex justify-content-between">
+            <span>info@thechennaimobiles.com</span>
+            <span>Best Mobile Store in Tamil Nadu & Kerala</span>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container-fluid px-4 py-3">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-3 col-md-5">
+                    <a href="#home" class="logo-wrap nav-open">
+                        <img class="logo-img" src="https://thechennaimobiles.yolasite.com/resources/unnamed.png"
+                            alt="The Chennai Mobiles Logo">
+                        <div class="logo-text">
+                            <strong>The Chennai Mobiles</strong>
+                            <span>Discover the Difference</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-6 col-md-7">
+                    <div class="search-box d-flex">
+                        <input type="text" placeholder="Search for products/brands">
+                        <button>⌕</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 text-lg-end d-flex justify-content-lg-end gap-3">
+                    <a href="#login" class="icon-btn nav-open">👤</a>
+                    <a href="#stores" class="icon-btn nav-open">📍</a>
+                    <a href="#cart" class="icon-btn nav-open">🛒<span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="container-fluid px-4 d-flex flex-wrap">
+                <a href="#home" class="nav-link-custom nav-open active">Home</a>
+                <a href="#category" class="nav-link-custom nav-open">Category</a>
+                <a href="#bestseller" class="nav-link-custom nav-open">Best Seller</a>
+                <a href="#deals" class="nav-link-custom nav-open">Daily Deals</a>
+                <a href="#stores" class="nav-link-custom nav-open">Stores Near</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-title">Shop by Category</div>
+            <a class="cat-item nav-open" href="#category">Mobile & Tablet <span>›</span></a>
+            <a class="cat-item nav-open" href="#category">Home Appliances <span>›</span></a>
+            <a class="cat-item nav-open" href="#category">Computer & Laptops <span>›</span></a>
+            <a class="cat-item nav-open" href="#category">Personal & Health Care <span>›</span></a>
+            <a class="cat-item nav-open" href="#category">Kitchen Appliances <span>›</span></a>
+            <a class="cat-item nav-open" href="#category">Accessories <span>›</span></a>
+        </aside>
+
+        <section>
+            <div id="home" class="page active">
+                <section class="hero">
+                    <div>
+                        <h1>Latest Mobiles & Electronics</h1>
+                        <p>Shop smartphones, tablets, appliances, laptops and accessories with daily deals and store
+                            pickup.</p>
+                        <a href="#bestseller" class="hero-btn nav-open">Shop Now</a>
+                    </div>
+                </section>
+
+                <div class="deal-strip">
+                    <div class="deal">
+                        <div class="deal-icon">🚚</div>
+                        <div><strong>Fast Delivery</strong>
+                            <div class="text-muted small">Across Tamil Nadu & Kerala</div>
+                        </div>
+                    </div>
+                    <div class="deal">
+                        <div class="deal-icon">%</div>
+                        <div><strong>Daily Deals</strong>
+                            <div class="text-muted small">Offers on mobiles and gadgets</div>
+                        </div>
+                    </div>
+                    <div class="deal">
+                        <div class="deal-icon">🏬</div>
+                        <div><strong>Stores Near You</strong>
+                            <div class="text-muted small">Visit your nearest showroom</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Mobile & Tablet</h2>
+                        <a href="#category" class="view-all nav-open">View All</a>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product">
+                            <span class="badge-sale">New</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/15-BLUE-3.webp"
+                                alt="Apple iPhone 15">
+                            <div class="product-title">Apple iPhone 15 Blue, 128GB</div>
+                            <div class="price">₹59,900</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">Deal</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1785778629634-88392962.png"
+                                alt="Samsung Z Fold8">
+                            <div class="product-title">Samsung Z Fold8 5G 12GB 256GB</div>
+                            <div class="price">₹1,79,999</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">17%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1783668215229-38021727.webp"
+                                alt="Oppo F33 Pro">
+                            <div class="product-title">Oppo F33 Pro 5G 8GB 128GB</div>
+                            <div class="price">₹39,999 <span class="mrp">₹47,999</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">23%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1775783217048.webp"
+                                alt="Vivo V70 FE">
+                            <div class="product-title">Vivo V70 FE 5G 8GB 128GB</div>
+                            <div class="price">₹44,999</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">Hot</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1773920276336.jpg"
+                                alt="Nothing Phone 4A">
+                            <div class="product-title">Nothing Phone 4A 5G 8GB 128GB</div>
+                            <div class="price">₹42,999</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Home Appliances</h2>
+                        <a href="#category" class="view-all nav-open">View All</a>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product">
+                            <span class="badge-sale">35%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1716624964682.webp"
+                                alt="Bajaj Neo Spectrum Table Fan">
+                            <div class="product-title">Bajaj Neo Spectrum 400MM All Black Pedestal Fan</div>
+                            <div class="price">₹3,590 <span class="mrp">₹5,885</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">27%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1716397172333.PNG"
+                                alt="LG 650L Frost Free Refrigerator">
+                            <div class="product-title">LG 650L Frost Free Refrigerator</div>
+                            <div class="price">₹85,999 <span class="mrp">₹1,18,399</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">34%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1777111482867.webp"
+                                alt="LG 9KG Top Load Washing Machine">
+                            <div class="product-title">LG 9KG Top Load Washing Machine</div>
+                            <div class="price">₹22,999 <span class="mrp">₹34,999</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">31%</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1718798924227.webp"
+                                alt="Xiaomi TV 5A 43 Inch">
+                            <div class="product-title">Xiaomi TV 43 Inch Full HD Smart LED</div>
+                            <div class="price">₹24,999 <span class="mrp">₹35,999</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product">
+                            <span class="badge-sale">41%</span>
+                            <img class="product-img"
+                                src="https://orientelectric.com/cdn/shop/files/rapidus-5-5l-instant-water-heater-geyser-white-orient-electric-1.png?v=1696835239"
+                                alt="Orient Rapidus Water Heater">
+                            <div class="product-title">Orient Rapidus Water Heater 5.5L</div>
+                            <div class="price">₹4,739 <span class="mrp">₹7,990</span></div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="category" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>All Categories</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">📱</div><strong>Mobile & Tablet</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">🏠</div><strong>Home Appliances</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">💻</div><strong>Computer & Laptops</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">⌚</div><strong>Accessories</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">🍳</div><strong>Kitchen Appliances</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="deal">
+                                <div class="deal-icon">💈</div><strong>Personal Care</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bestseller" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Best Seller</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <div class="product-grid">
+                        <div class="product">
+                            <span class="badge-sale">Best</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/15-BLUE-3.webp"
+                                alt="iPhone">
+                            <div class="product-title">Apple iPhone 15 Blue, 128GB</div>
+                            <div class="price">₹59,900</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+                        <div class="product">
+                            <span class="badge-sale">Best</span>
+                            <img class="product-img" src="https://api.thechennaimobiles.com/1785778629634-88392962.png"
+                                alt="Samsung">
+                            <div class="product-title">Samsung Z Fold8 5G 12GB 256GB</div>
+                            <div class="price">₹1,79,999</div>
+                            <button class="add-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deals" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Daily Deals</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <div class="deal-strip">
+                        <div class="deal">
+                            <div class="deal-icon">%</div><strong>Up to 75% on accessories</strong>
+                        </div>
+                        <div class="deal">
+                            <div class="deal-icon">📱</div><strong>Latest 5G phones</strong>
+                        </div>
+                        <div class="deal">
+                            <div class="deal-icon">💳</div><strong>EMI available in stores</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stores" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Stores Near</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <img class="w-100 rounded mb-3"
+                        src="https://www.thechennaimobiles.com/_next/image?q=75&url=https%3A%2F%2Fapi.thechennaimobiles.com%2F1733127766894.jpeg&w=1600"
+                        alt="Store">
+                    <p>Find Chennai Mobiles showrooms across Tamil Nadu and Kerala.</p>
+                </div>
+            </div>
+
+            <div id="login" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Sign In</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <input class="form-control mb-3" placeholder="Mobile number or email">
+                    <input class="form-control mb-3" placeholder="Password" type="password">
+                    <button class="add-btn" style="max-width:220px;">Sign In Now</button>
+                </div>
+            </div>
+
+            <div id="cart" class="page">
+                <div class="section-card">
+                    <div class="section-head">
+                        <h2>Your Cart</h2><a href="#home" class="view-all nav-open">Back Home</a>
+                    </div>
+                    <p>Sign in to redeem The Chennai Mobiles reward points on this order.</p>
+                    <hr>
+                    <h4>Total: ₹0</h4>
+                    <button class="add-btn" style="max-width:220px;">Checkout</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <h4>The Chennai Mobiles</h4><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Stores
+                        Near</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Categories</h4><a href="#">Mobile & Tablet</a><a href="#">Home Appliances</a><a
+                        href="#">Accessories</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Profile</h4><a href="#">Login</a><a href="#">Your Cart</a><a href="#">Checkout</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Support</h4><a href="#">info@thechennaimobiles.com</a><a href="#">Daily Deals</a><a
+                        href="#">Best Seller</a>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="mb-0 text-white-50">© 2026 The Chennai Mobiles style demo.</p>
+        </div>
+    </footer>
+
+    <script>
+        const pages = document.querySelectorAll(".page");
+
+        function showPage() {
+            const id = location.hash.replace("#", "") || "home";
+
+            pages.forEach(page => {
+                page.classList.toggle("active", page.id === id);
+            });
+
+            document.querySelectorAll(".nav-link-custom").forEach(link => {
+                link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+            });
+
+            window.scrollTo({top: 0, behavior: "smooth"});
+        }
+
+        document.querySelectorAll("img").forEach(img => {
+            img.onerror = function () {
+                this.src = "https://thechennaimobiles.yolasite.com/resources/unnamed.png";
+                this.style.objectFit = "contain";
+            };
+        });
+
+        window.addEventListener("hashchange", showPage);
+        showPage();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
