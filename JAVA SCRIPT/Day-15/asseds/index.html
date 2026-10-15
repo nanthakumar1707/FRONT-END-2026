@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript DOM Assignment</title>
+    <style>
+        body { font-family: Arial; margin: 25px; }
+        input, select, button { padding: 8px; margin: 5px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; }
+    </style>
+</head>
+<body>
+
+<h2>Task 1: Employee Registration</h2>
+
+<form id="employeeForm">
+    <input type="text" id="name" placeholder="Employee Name" required>
+    <input type="number" id="age" placeholder="Age" min="0.01" step="any" required>
+    <input type="text" id="department" placeholder="Department" required>
+    <input type="number" id="salary" placeholder="Salary" min="0.01" step="any" required>
+    <button type="submit">Submit</button>
+    <button type="reset">Clear Form</button>
+</form>
+
+<p id="message"></p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody id="employeeTable"></tbody>
+</table>
+
+<hr>
+
+<h2>Task 2: Simple Calculator</h2>
+
+<form id="calculatorForm">
+    <input type="number" id="num1" placeholder="First Number" step="any" required>
+    <input type="number" id="num2" placeholder="Second Number" step="any" required>
+
+    <select id="operation">
+        <option value="+">Addition (+)</option>
+        <option value="-">Subtraction (-)</option>
+        <option value="*">Multiplication (*)</option>
+        <option value="/">Division (/)</option>
+    </select>
+
+    <button type="submit">Calculate</button>
+    <button type="button" id="clearBtn">Clear</button>
+</form>
+
+<p id="result">Result:</p>
+
+<script src="script.js"></script>
+</body>
+</html>
