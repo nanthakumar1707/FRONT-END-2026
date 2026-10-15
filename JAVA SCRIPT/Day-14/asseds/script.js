@@ -1,59 +1,61 @@
-// TASK 1 - CHANGE HEADING COLOR
+// Task 1: Student Details
 
-document.getElementById("btn1").addEventListener("click", function() {
-    let heading = document.getElementById("heading1");
+console.log("TASK 1: Student Details");
 
-    heading.style.color = "red";
-    heading.style.fontSize = "30px";
-});
+let studentName = "Nantha";
+let age = 23;
+let courseCompleted = true;
 
-
-// TASK 2 - CHANGE BOX BACKGROUND
-
-document.getElementById("btn2").addEventListener("click", function() {
-    let box = document.getElementById("box");
-
-    box.style.backgroundColor = "blue";
-    box.style.color = "white";
-});
-
-document.getElementById("btn3").addEventListener("click", function() {
-    let box = document.getElementById("box");
-
-    box.style.backgroundColor = "yellow";
-    box.style.color = "black";
-});
+console.log("Student Name:", studentName);
+console.log("Age:", age);
+console.log("Course Completed:", courseCompleted);
 
 
-// TASK 3 - SHOW AND HIDE
+// Task 2: Salary Calculation
+console.log("\nTASK 2: Salary Calculation");
 
-document.getElementById("btn4").addEventListener("click", function() {
-    document.getElementById("para1").style.display = "none";
-});
+let salary = 15000;
+salary = salary + 5000;
 
-document.getElementById("btn5").addEventListener("click", function() {
-    document.getElementById("para1").style.display = "block";
-});
+console.log("Updated Salary:", salary);
 
 
-// TASK 4 - TOGGLE SHOW / HIDE
+// Task 3: Even or Odd
+console.log("\nTASK 3: Even or Odd");
 
-document.getElementById("btn6").addEventListener("click", function() {
-    let heading = document.getElementById("heading2");
+let number = 25;
 
-    if (heading.style.display === "none") {
-        heading.style.display = "block";
-    } else {
-        heading.style.display = "none";
-    }
-});
+if (number % 2 === 0) {
+    console.log("Even Number");
+} else {
+    console.log("Odd Number");
+}
 
 
-// TASK 5 - DARK MODE / LIGHT MODE
+// Task 4: Data Type Checking
+console.log("\nTASK 4: Data Type Checking");
 
-document.getElementById("btn7").addEventListener("click", function() {
-    let theme = document.getElementById("theme");
+let name = "Arun";
+let ageValue = 25;
+let isCompleted = true;
+let value;
 
-    theme.classList.toggle("dark");
-    theme.classList.toggle("light");
-});
+console.log("Name:", typeof name);
+console.log("Age:", typeof ageValue);
+console.log("Completed:", typeof isCompleted);
+console.log("Value:", typeof value);
+
+
+// Task 5: Swap Two Numbers
+console.log("\nTASK 5: Swap Two Numbers");
+
+let a = 10;
+let b = 20;
+
+console.log("Before Swapping: a =", a, ", b =", b);
+
+let temp = a;
+a = b;
+b = temp;
+
+console.log("After Swapping: a =", a, ", b =", b);
